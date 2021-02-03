@@ -1,54 +1,104 @@
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
-import dash_bootstrap_components as dbc
-
+# import dash_bootstrap_components as dbc
+from apps import expression, clusters, welcome
 # Connect to main app.py file
 from app import app
 from app import server  # you need this otherwise Heroku will not work
 
-# Connect to your app pages
-from apps import clusters, expression
+header = html.Div([
+        # SPACER
+        html.Div([""], className='colm', style={"flex": "1 1 20%"
+                                              # ,"background-color": "red"
+                                              }
+                 ),
+        html.Div([
+            html.A([html.Div(["3D Flower Meristem"])], href="/#", className="LINK")
+        ], className='colm', style={"flex": "3 0 60%",
+                                    "display": "flex", "flex-direction": "column",
+                                    "align-items": "center",
+                                    "justify-content": "center", "font-size": "3rem"
+                                     # ,"background-color": "blue"
+                                    }),
+        html.Div([
+            html.A([html.Div(["Kaufmann Lab"])], href="https://www2.hu-berlin.de/biologie/flower/", className="LINK")
+        ], className='colm', style={"flex": "1 1 20%",
+                                    "display": "flex", "flex-direction": "column",
+                                    "align-items": "flex-end",
+                                    "justify-content": "center", "font-size": "1.5rem",
+                                    "padding":"0 1.5rem 0 0"
+                                    # ,"background-color": "red"
+                                    })
+], className='rowm', style={"height": "6rem"})
 
-sidebar = dbc.Card([
-    dbc.CardBody([
-        html.H2("3D Meristem", className="display-4"),
-        html.Hr(),
-        html.P("3D clusters or gene expression profiles", className="lead"),
-        dbc.Nav(
-            [
-                dbc.NavLink("3D gene expression", href="/apps/expr", active="exact"),
-                dbc.NavLink("3D cluster assignment", href="/apps/clust", active="exact"),
-            ],
-            vertical=True, pills=True,
-        ),
-    ]),
-], color="light", style={"height":"100vh",
-                        "width":"16rem",
-                        "position":"fixed"}
-)
+navbar = html.Div([
+        # SPACER
+        html.Div([""], className='colm'),
+        # BUTTON
+        html.Div([
+            html.A([html.Button(["3D Expression"], className="button button1")],
+                   href="/apps/expr", style={"height": "100%", "width": "100%"})
+        ], className='colm',
+            style={"align-items": "center", "justify-content": "center", "background-color": "red"}),
+        # SPACER
+        html.Div([""], className='colm'),
+        # BUTTON
+        html.Div([
+            html.A([html.Button(["3D Clusters"], className="button button2")],
+                   href="/apps/clust", style={"height": "100%", "width": "100%"})
+        ], className='colm', style={"align-items": "center", "justify-content": "center"}),
+        # SPACER
+        html.Div([""], className='colm', style={"height":"100%"})
+], className='rowm', style={"height": "3rem"})
 
-content = html.Div(id="page-content", children=[], style={"padding":"2rem"})
+content = html.Div(id="page-content", className='colm')
 
-app.layout = dbc.Container([
-    dcc.Location(id="url"),  # sets what pathname is. If we click sth. in the side bar this changes. This is fed into the callback
-    dbc.Row([
-        dbc.Col(sidebar, width=2),
-        dbc.Col(content, width=9, style={"margin-left": "16rem"})
-    ])
-], fluid=True)
+footer = html.Div([
+    html.Div([
+        html.Div([
+            html.Div(["Created by Manuel Neumann using Dash Plotly and CSS Flexbox"]),
+            html.P([""]),
+            html.A([html.Div(["GitHub"])], href="https://github.com/rywet56", className="LINK")
+        ], className='colm', style={"flex": "1 1 0", "padding": "2rem",
+                                    "justify-content": "space-around", "height": "3rem"})
+    ], className="rowm")
+], className='colm')
+
+app.layout = html.Div([
+    dcc.Location(id="url"),
+
+    # HEADER
+    html.Div([
+        html.Div([header], className="colm")
+    ], className="rowm"),
+
+    # NAV BAR
+    html.Div([
+        html.Div([navbar], className="colm")
+    ], className="rowm"),
+
+    # main content
+    html.Div([
+        content
+    ], className="rowm", style={"flex": "1 1 auto"}),
+
+    # FOOTER
+    html.Div([
+        html.Div([footer], className="colm")
+    ], className="rowm", style={"height": "8rem", "border-top":"0.2rem solid white", "margin-top":"5rem"})
+], className="main-viewport")
 
 
-@app.callback(Output('page-content', 'children'),
-              [Input('url', 'pathname')])
-def display_page(pathname):
+@app.callback(Output("page-content", "children"), [Input("url", "pathname")])
+def render_page_content(pathname):
     if pathname == '/apps/expr':
-        return expression.layout
+        return expression.page_1
     if pathname == '/apps/clust':
-        return clusters.layout
+        return clusters.page_2
     else:
-        return expression.layout
+        return welcome.page_3
 
 
-if __name__ == '__main__':
-    app.run_server(debug=False)
+if __name__ == "__main__":
+    app.run_server(debug=True)

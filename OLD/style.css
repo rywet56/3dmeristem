@@ -1,0 +1,97 @@
+html, body {
+  height: 100%;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  /* background-color: cornsilk; */
+  background-color: #060606;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.space-left {
+  margin-left: 1rem;
+}
+.space-up {
+  margin-top: 1rem;
+}
+/* .padding_around {
+padding: 1rem;
+} */
+
+/* ################################### */
+/* Bootstrap-like column-row system ... just better*/
+.main-viewport {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  /* background-color: slateblue; */
+}
+.container {
+  display: flex;
+  flex-direction: column;
+}
+.rowm {
+  display: flex;
+  flex-direction: row;
+  /* background-color: sienna; */
+  /* new */
+  height: 100%; 
+}
+.colm {
+  flex: 1 1 auto;
+  /* new */ 
+  display: flex;
+  flex-direction: column;
+}
+
+/* ################################### */
+/* Links (not in buttons) */
+a:link {
+  color: rgb(255, 255, 255);
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color: rgb(255, 255, 255);
+  background-color: transparent;
+  text-decoration: none;
+}
+a:hover {
+  color: rgb(255, 255, 255);
+  background-color: transparent;
+  text-decoration: none;
+}
+a:active {
+  color: rgb(255, 255, 255);
+  background-color: transparent;
+  text-decoration: none;
+}
+
+/* ################################### */
+/* NAV BUTTONS */
+button {
+  height: 100%;
+  width: 100%;
+  font-size: 1.5rem;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  /* border-radius: 20%; */
+}
+.button1 {
+  background-color: #2a9fd6; /* Green */
+  border: 0.2rem solid #2a9fd6;
+}
+.button1:hover {
+  background-color: #117dae;
+  border-color: #117dae;
+}
+.button2 {
+  background-color: #f80;
+  border: 0.2rem  solid #f80;
+}
+.button2:hover {
+  background-color: rgb(207, 110, 0);
+  border-color: rgb(207, 110, 0);
+}

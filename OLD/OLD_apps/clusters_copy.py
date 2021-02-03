@@ -29,85 +29,109 @@ clust['x'] = ref['x'].tolist()
 clust['y'] = ref['y'].tolist()
 clust['z'] = ref['z'].tolist()
 
-clust_umap_card = html.Div([
-    html.Div([
-        # The main part of the card
-        html.Div([html.Div([
-            # some text
-            html.Div([
-                html.Div(["some text"], className="colm")
-            ], className="rowm", style={"margin":"0.5rem"}),
-            # the plot
-            html.Div([
-                html.Div([dcc.Graph(id='umap_graph', figure={})], className="colm")], className="rowm")
-        ], className="colm")], className="rowm"),
-    ], className="colm"),
-], className="rowm"
+clust_card = dbc.Card(
+    [
+        dbc.CardBody(
+            [
+                # html.H4("Clustering In UMAP Space", className="card-title"),
+                # html.P("this is some clustering...",
+                #        className="text-success"),
+                html.Div(
+                    [
+                        html.Div([
+                            dcc.Dropdown(id='umap_dropdown', multi=False,
+                                         options=[{'label': x, 'value': x} for x in cluster_names],
+                                         value='cluster_1')
+                            ], className='col-2 offset-5'
+                        )
+                    ], className='row', style={"margin-bottom":"1rem"}
+                ),
+                dbc.Row([
+                    dbc.Col(dcc.Graph(id='umap_graph', figure={})),
+                    dbc.Col(dcc.Graph(id='3D_cluster_graph', figure={}))
+                ])
+            ]
+        ),
+    ], className="card text-white border-primary mb-3",
+    style={"background-color": "#060606", "color": "white", "margin": "3rem", "margin-top": "3rem"}
 )
 
-clust_3d_card = html.Div([
-    html.Div([
-        # The main part of the card
-        html.Div([html.Div([
-            # some text
-            html.Div([
-                html.Div(["some text"], className="colm")
-            ], className="rowm", style={"margin":"0.5rem"}),
-            # the plot
-            html.Div([
-                html.Div([dcc.Graph(id='3D_cluster_graph', figure={})], className="colm")], className="rowm")
-        ], className="colm")], className="rowm"),
+# clust_card = html.Div([
+#     dbc.Row(
+#         dbc.Col(
+#             dcc.Dropdown(id='umap_dropdown', multi=False,
+#                          options=[{'label': x, 'value': x} for x in cluster_names],
+#                          value='cluster_1'),
+#         )),
+#     dbc.Row([
+#         dbc.Card([dbc.CardBody([dbc.Col(dcc.Graph(id='umap_graph', figure={}))])]),
+#         dbc.Card([dbc.CardBody([dbc.Col(dcc.Graph(id='3D_cluster_graph', figure={}))])]),
+#
+#     ])
+# ])
 
-        # The menu part of the card
-        html.Div([
-            html.Div([
-                html.Div([
-                    html.Div([
-                        html.H5("Color Scheme:"),
-                        dcc.RadioItems(id='color_code_clust',
-                                       options=[
-                                           {'label': 'blue-yellow-red', 'value': 'byr'},
-                                           {'label': 'yellow-red', 'value': 'yr'},
-                                           {'label': 'red-green', 'value': 'rg'}
-                                       ], value='byr')
-                    ], className="colm"),
-                ], className="rowm"),
-                html.Div([
-                    html.Div([
-                        html.H5("Range of Values:"),
-                        dcc.RangeSlider(id='slider_clust', min=0, max=0, value=[],
-                                        marks={}, step=None, allowCross=False,
-                                        className="custom-range", verticalHeight=800)
-                    ], className="colm")
-                ], className="rowm")
-            ], className="colm")
-        ], className="rowm"),
-    ], className="colm"),
-], className="rowm"
+umap_clust_menu_card = dbc.Card(
+    [
+        dbc.CardBody(
+            [
+                # dbc.Row(dbc.Col(html.H2("3D Flower Meristem"))),
+                html.H5("Range of Values:"),
+                dcc.RangeSlider(id='slider_clust', min=0, max=0, value=[],
+                                marks={}, step=None, allowCross=False,
+                                className="custom-range", verticalHeight=800),
+                html.H5("Color Scheme:"),
+                dcc.RadioItems(id='color_code_clust',
+                               options=[
+                                   {'label': 'blue-yellow-red', 'value': 'byr'},
+                                   {'label': 'yellow-red', 'value': 'yr'},
+                                   {'label': 'red-green', 'value': 'rg'}
+                               ],
+                               value='byr',
+                               inputStyle={"margin-right": "5px"}
+                               )
+            ], style={"background-color": "#060606"}
+        )
+    ], className="card text-white bg-secondary mb-3", style={"margin-right": "3rem", "margin-top": "1rem"}
 )
 
-page_2 = html.Div([
-    html.Div([
-        # the dropdown (row)
-        html.Div([
-            html.Div([""], className="colm", style={"flex": "2 2 auto"}),  # SPACER
-            html.Div([
-                dcc.Dropdown(id='umap_dropdown', multi=False,
-                             options=[{'label': x, 'value': x} for x in cluster_names],
-                             value='cluster_1')
-            ], className="colm", style={"flex": "1 1 auto"}),  # actual dropdown
-            html.Div([""], className="colm", style={"flex": "2 2 auto"}),  # SPACER
-        ], className="rowm", style={"margin":"0.5rem 0 0.5rem 0"}),
+page_2 = html.Div(
+    [
+        # clust_card,
+        dbc.Row(dbc.Col(clust_card)),
+        dbc.Row(dbc.Col(umap_clust_menu_card, width={'size': 6, 'offset': 6}))
+    ], style={
+        "background-color": "#060606",
+        # "background-color":"#ffcc99",
+        "min-height": "100vh", "min-width": "100vw"}
+)
 
-        # the umap clustering (left colum) and 3D clusters (right) (row)
-        html.Div([
-            # clusters in UMAP space
-            html.Div([clust_umap_card], className="colm", style={"max-width": "50%"}),
-            # clusters in 3D model
-            html.Div([clust_3d_card], className="colm", style={"max-width": "50%"})
-        ], className="rowm")
-    ], className="colm")
-], className="rowm clus_card")
+
+# layout = html.Div([
+#     dbc.Row(
+#         dbc.Col(
+#             html.H2('3D UMAP cluster assignment '),
+#             width={'size': 7, 'offset': 3}
+#         )
+#     ),
+#     dbc.Row([
+#         dbc.Col(
+#             dcc.Dropdown(id='my-dropdown_4', multi=False,
+#                          options=[{'label': x, 'value': x} for x in cluster_names],
+#                          value='cluster_1'),
+#             width={'size': 2, 'offset': 5}
+#         )
+#     ]),
+#     dbc.Row([
+#         dbc.Col(
+#             dcc.Graph(id='graph-output_3', figure={}),
+#             width={'size': 6, 'offset': 0}
+#         ),
+#         dbc.Col(
+#             dcc.Graph(id='graph-output_4', figure={}),
+#             width={'size': 6, 'offset': 0}
+#         )
+#     ])
+# ])
 
 
 @app.callback([Output('slider_clust', 'min'), Output('slider_clust', 'max'),
@@ -158,12 +182,12 @@ def update_pre_clust(val_chosen_2, ranges, color_code):
                                          showlegend=False
 
                                          )],
-                      layout=go.Layout(scene=dict(bgcolor="#282828",
+                      layout=go.Layout(scene=dict(bgcolor="#060606",
                                                   xaxis=dict(showgrid=False, zeroline=False, visible=False),
                                                   yaxis=dict(showgrid=False, zeroline=False, visible=False),
                                                   zaxis=dict(showgrid=False, zeroline=False, visible=False)
                                                   ),
-                                       margin=dict(l=0, r=0, t=0, b=0), paper_bgcolor="#282828"
+                                       margin=dict(l=0, r=0, t=0, b=0), paper_bgcolor="#060606"
                                        )
                       )
     # fig_2 = px.scatter_3d(data_frame=clust_cp, x='x', y='y', z='z',
@@ -194,8 +218,8 @@ def update_umap_clust(val_chosen_2):
                                        marker=dict(size=6, color=cluster_cols_sub), opacity=1
                                        )
                             ],
-                      layout=go.Layout(showlegend=False, plot_bgcolor="#282828",
-                                       margin=dict(l=0, r=0, t=0, b=0), paper_bgcolor="#282828",
+                      layout=go.Layout(showlegend=False, plot_bgcolor="#060606",
+                                       margin=dict(l=0, r=0, t=0, b=0), paper_bgcolor="#060606",
                                        xaxis=dict(visible=True, color="white", title=dict(text="UMAP1"), showline=True,
                                                   showgrid=False, zeroline=False),
                                        yaxis=dict(visible=True, color="white", title=dict(text="UMAP2"), showline=True,
