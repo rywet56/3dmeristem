@@ -4,7 +4,7 @@ import dash_html_components as html
 text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in"
 p1 = "We (Kaufmann Lab) want to provide the flower development community access to the predicted and so far, " \
      "unknown 3D gene expression patterns in the developing floral meristem. This data is available in an interactive " \
-     "way (explained in “How to use this page”) and can also be downloaded in order access it in a programmatically. "
+     "way and can also be downloaded in order to access it programmatically. "
 p2 = "Developmental processes, that means the developmental trajectory a cell traverse, are the result of precise " \
      "molecular changes at the level of the chromatin, genome and transcriptome. The spatial context of cells plays " \
      "an important role in all those processes in the way that global patterns of effector molecules determine a " \
@@ -77,6 +77,9 @@ page_3 = html.Div([
         html.H1(["Why this page?"], className="header_1"),
         html.P([p1], className="text"),
 
+        html.H1(["How to use this page ?"], className="header_1"),
+        p6,
+
         html.H1(["The biological question"], className="header_1"),
         html.P([p2], className="text"), html.P([p3], className="text"),
 
@@ -85,9 +88,6 @@ page_3 = html.Div([
 
         html.H1(["The computational framework – novosparc +"], className="header_1"),
         html.P([p5], className="text"),
-
-        html.H1(["How to use this page ?"], className="header_1"),
-        p6,
 
         html.H1(["Beyond the floral meristem - other organisms"], className="header_1"),
         p7,
@@ -106,14 +106,21 @@ page_3 = html.Div([
                        href="https://raw.githubusercontent.com/rywet56/3dmeristem/main/datasets/3d_clusters.csv")
             ], className="colm"),
             html.Div([""], className="colm"),
-        ], className="rowm", style={"height": "4rem", "margin":"1.5rem 0 2rem 0"}),
+        ], className="rowm", style={"height": "4rem", "margin": "1.5rem 0 2rem 0"}),
 
         html.H1(["References"], className="header_1"),
         html.P([
-            "[1] Ref 1",
-            html.Br([]),
-            "[2] Rajewski",
-            html.Br(),
+            "[1] Refahi, Y., Zardilis, A., Michelin, G., Wightman, R., Leggio, B., Legrand, J., Faure, E., Vachez, "
+            "L., Armezzani, A., Risson, A.-E., Zhao, F., Das, P., Prunet, N., Meyerowitz, E., Godin, C., Malandain, "
+            "G., Jönsson, H., & Traas, J. (2020). A multiscale analysis of early flower development in Arabidopsis "
+            "provides an integrated view of molecular regulation and growth control. BioRxiv, 2020.09.25.313312. "
+            "https://doi.org/10.1101/2020.09.25.313312",
+        ], className="text"),
+        html.P([
+            "[2] Nitzan, M., Karaiskos, N., Friedman, N., & Rajewsky, N. (2019). Gene expression cartography. Nature, "
+            "576(7785), 132–137. https://doi.org/10.1038/s41586-019-1773-3",
+        ], className="text"),
+        html.P([
             "[3] our publication"
         ], className="text"),
 

@@ -35,8 +35,13 @@ clust_umap_card = html.Div([
         html.Div([html.Div([
             # some text
             html.Div([
-                html.Div(["some text"], className="colm")
-            ], className="rowm", style={"margin":"0.5rem"}),
+                html.Div([
+                    html.H2(["single-cell clusters in UMAP space"], className="card-title-big"),
+                ], className="colm"
+                    # , style={"background-color": "red"}
+                )
+                # html.Div(["some text"], className="colm")
+            ], className="rowm", style={"margin": "0.5rem"}),
             # the plot
             html.Div([
                 html.Div([dcc.Graph(id='umap_graph', figure={})], className="colm")], className="rowm")
@@ -50,13 +55,15 @@ clust_3d_card = html.Div([
         # The main part of the card
         html.Div([html.Div([
             # some text
-            html.Div([
-                html.Div(["some text"], className="colm")
-            ], className="rowm", style={"margin":"0.5rem"}),
+            html.Div([html.Div([
+                    html.H2(["3D Cluster Assignment"], className="card-title-big"),
+                ], className="colm")], className="rowm", style={"margin": "0.5rem"}),
             # the plot
-            html.Div([
-                html.Div([dcc.Graph(id='3D_cluster_graph', figure={})], className="colm")], className="rowm")
-        ], className="colm")], className="rowm"),
+            html.Div([html.Div([
+                dcc.Graph(id='3D_cluster_graph', figure={})
+                ], className="colm")], className="rowm")
+            ], className="colm")
+        ], className="rowm"),
 
         # The menu part of the card
         html.Div([
@@ -86,8 +93,38 @@ clust_3d_card = html.Div([
 ], className="rowm"
 )
 
+clust_data = "The UMAP plot (lower left plot) describes the lower dimensional representation of cells from the scRNA-seq " \
+             "dataset which was fed into novosparc + (together with marker genes) to predict the unknown 3D expression " \
+             "profiles shown in '3D expression'. Additionally cells were clustered into 12 groups, visualized with " \
+             "different colors. By using a probablistic assignment of single-cells from the scRNA-seq data to cells " \
+             "in the 3D model, the clusters in the UMAP plot could be mapped onto the 3D model (lower right plot). " \
+             "The color of a cell in the 3D model describes the probability that this cell belongs to a particular " \
+             "cluster (the one chosen through the dropdown). "
+usage = "The 3D Cluster Mapping makes it possible to view the location of single-cell UMAP clusters in the 3D " \
+        "mersitem model. This enables the verification and possibly the dicovery of new cell types in a 3D context."
+menu = "In order to visualize the 3D cluster assignment as well as the postion of cells in the UMAP plot, choose" \
+       "a cluster in the Drop-Down meny below. The choosen cluster will be highlighted in the UMAP plot and a 3D " \
+       "Cluster mapping for this selected cluster will be shown on the right. The color scheme as well as Maximum " \
+       "and Minimum for the displayed probabilities can be changed via the Radiobuttons and Rangeslider to " \
+       "optimize visualizaiton."
+
 page_2 = html.Div([
     html.Div([
+        # Description
+        html.Div([
+            html.Div([
+                html.P(["Generation of the Data:"], className="card-title-small"),
+                html.P([clust_data], className="card-text"),
+                html.P(["Purpose of this visualization:"], className="card-title-small"),
+                html.P([usage], className="card-text"),
+                html.P(["How to use this resource:"], className="card-title-small"),
+                html.P([menu], className="card-text"),
+
+            ], className="colm"
+                # , style={"background-color": "red"}
+            )
+        ], className="rowm", style={"margin": "0.5rem"}),
+
         # the dropdown (row)
         html.Div([
             html.Div([""], className="colm", style={"flex": "2 2 auto"}),  # SPACER
@@ -97,14 +134,14 @@ page_2 = html.Div([
                              value='cluster_1')
             ], className="colm", style={"flex": "1 1 auto"}),  # actual dropdown
             html.Div([""], className="colm", style={"flex": "2 2 auto"}),  # SPACER
-        ], className="rowm", style={"margin":"0.5rem 0 0.5rem 0"}),
+        ], className="rowm", style={"margin": "0.5rem 0 0.5rem 0"}),
 
         # the umap clustering (left colum) and 3D clusters (right) (row)
         html.Div([
             # clusters in UMAP space
-            html.Div([clust_umap_card], className="colm", style={"max-width": "50%"}),
+            html.Div([clust_umap_card], className="colm", style={"max-width": "50%", "margin-right":"3rem"}),
             # clusters in 3D model
-            html.Div([clust_3d_card], className="colm", style={"max-width": "50%"})
+            html.Div([clust_3d_card], className="colm", style={"max-width": "50%", "margin-left":"3rem"})
         ], className="rowm")
     ], className="colm")
 ], className="rowm clus_card")
