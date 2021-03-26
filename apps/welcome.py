@@ -2,47 +2,19 @@ import dash_core_components as dcc
 import dash_html_components as html
 
 text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in"
-p1 = "We (Kaufmann Lab) want to provide the flower development community access to the predicted and so far, " \
-     "unknown 3D gene expression patterns in the developing floral meristem. This data is available in an interactive " \
-     "way and can also be downloaded in order to access it programmatically. "
-p2 = "Developmental processes, that means the developmental trajectory a cell traverse, are the result of precise " \
-     "molecular changes at the level of the chromatin, genome and transcriptome. The spatial context of cells plays " \
-     "an important role in all those processes in the way that global patterns of effector molecules determine a " \
-     "cells relative position and therefore it’s role within the developing organism. In the context of A. thaliana " \
-     "flower development, the cell wall composition of cells on the outermost layer of the meristem are subject to a " \
-     "constant remodeling, allowing the directed growth rates from cells within the meristem influence the expansion " \
-     "of the overall meristem in defined directions. The identity of those inner cells are themselves defined by the " \
-     "action of molecular machines (proteins), controlled by signaling pathways which are established through the " \
-     "fine-tuned regulation of gene expression. In that sense, gene regulation controls the developing morphology and " \
-     "function of the flower meristem "
+p1 = "This website aims to provide community access to predicted 3D gene expression patterns in the developing floral meristem based on single cell RNA-seq. The data can be visualized interactively and downloaded. "
+p2 = "Developmental trajectories of cells result from molecular changes at the levels of the chromatin and transcriptome. The spatial context of cells plays an important role in cell fate specification. For that reason, it is very important to understand gene expression patterns, the chromatin landscape and eventually gene-regulatory mechanisms that lead to cellular differentiation. At this point, only a few dozen marker genes involved in floral meristem organization are known and have been mapped to a 3D model [1]. The ultimate goal is to understand the activities of all genes in a spatial 3D context. "
 p3 = "For that reason, it is very important to understand gene expression patterns, the chromatin landscape and " \
      "eventually gene-regulatory mechanisms, that lead to a well-defined biochemistry of an organisms, " \
      "in their spatial context. At this point, only a few dozen marker genes involved in floral meristem development " \
      "are known and have been mapped to a 3D model (reference). But in order to understand developmental processes, " \
      "the knowledge of a lot more and at best nearly all genes has to be understood in a spatial 3D context. "
-p4 = "Unfortunately, the experimental access to this type of data through confocal imaging and 3D reconstruction is " \
-     "limited due to the difficulty of obtaining promotor constructs for all genes as well as screening them in a " \
-     "high-throughput way. To that end we (Kaufmann Lab) developed a computational framework (reference) that allows " \
-     "the prediction of 3D gene expression patterns in the flower meristem, only with the knowledge of scRNA-seq data " \
-     "and a handful of marker genes whose 3D expression patterns has been mapped manually in a binary format (" \
-     "reference). "
-p5 = "The underlying workhorse is the application of Optimal Transport to reconstruct spatial expression patterns in " \
-     "a probabilistic sense, as implemented in novoSpaRc (reference). We improved this method by developing a range " \
-     "of pre-processing steps such as cell-selection and cell-enrichment, which help novoSpaRc to map single-cells to " \
-     "the 3D model in a probabilistic sense. Most notably, the extension of this method (called novosparc +) improves " \
-     "upon the original novoSpaRc method in the way that it allows the prediction of spatial expression patterns with " \
-     "a very small set (~20) of marker genes. Furthermore, novosparc + can in principle be applied to the 3D/2D gene " \
-     "expression patterns in any organism (more in the section “Beyond the floral meristem”)."
+p4 = "A computational framework was developed that allows the prediction of 3D gene expression patterns in the flower meristem based on knowledge of scRNA-seq data [2] and known marker genes whose 3D expression patterns have been mapped manually in a binary format  [1]. "
+p5 = "The underlying workhorse is the application of Optimal Transport to reconstruct spatial expression patterns in a probabilistic sense, as implemented in novoSpaRc [3] . We improved this method by developing a range of pre-processing steps such as cell-selection and cell-enrichment, which help novoSpaRc to map single-cells to the 3D model in a probabilistic sense. Most notably, the extension of this method allows the prediction of spatial expression patterns with a very small set (~20) of marker genes. Furthermore, our approach can in principle be applied to the 3D/2D gene expression patterns in any organism."
 p6 = html.Div([
-    html.P(["This website provides the two main results of our paper “paper title”, that is the predicted expression "
-            "of the top 1,000 genes* and the probabilistic mapping of clusters in UMAP space from the scRNA-seq data "
-            "onto the 3D flower meristem model, in an interactive way. In order to access the predicted expression "
-            "profiles of the top 1,000 genes click on the 3D meristem Button. For accessing the scRNA-seq UMAP "
-            "clusters whose single cells were mapped onto the 3D Meristem, click the 3D clusters button."],
+    html.P(["This website provides interactive access to the predicted expression of the top 1,306 genes* and the probabilistic mapping of clusters in UMAP space from the scRNA-seq data onto the 3D flower meristem model."],
            className="text"),
-    html.P(["* The confidence in our predictions, that means how confident we are that our prediction is indeed close "
-            "to the “true” expression profiles, is evaluated with the PEP (Predicted ExPression) score. This score "
-            "was used to select the top 1,000 genes for whose prediction we have a high confidence."], className="text")
+    html.P(["* based on PEP (Predicted ExPression) score. This score was used to select the top 1,306 genes with high-confidence expression prediction with a PEP > 0.13."], className="text")
 ])
 
 p7 = html.Div([
@@ -89,9 +61,6 @@ page_3 = html.Div([
         html.H1(["The computational framework – novosparc +"], className="header_1"),
         html.P([p5], className="text"),
 
-        html.H1(["Beyond the floral meristem - other organisms"], className="header_1"),
-        p7,
-
         html.H1(["Data Access"], className="header_1"),
         p8,
         html.Div([
@@ -116,12 +85,11 @@ page_3 = html.Div([
             "provides an integrated view of molecular regulation and growth control. BioRxiv, 2020.09.25.313312. "
             "https://doi.org/10.1101/2020.09.25.313312",
         ], className="text"),
-        html.P([
-            "[2] Nitzan, M., Karaiskos, N., Friedman, N., & Rajewsky, N. (2019). Gene expression cartography. Nature, "
-            "576(7785), 132–137. https://doi.org/10.1038/s41586-019-1773-3",
+        html.P(["[2] our publication"
         ], className="text"),
         html.P([
-            "[3] our publication"
+            "[3] Nitzan, M., Karaiskos, N., Friedman, N., & Rajewsky, N. (2019). Gene expression cartography. Nature, "
+            "576(7785), 132–137. https://doi.org/10.1038/s41586-019-1773-3"
         ], className="text"),
 
     ], className='colm main_text_card', style={"flex": "4 4 0"

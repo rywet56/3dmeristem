@@ -16,14 +16,29 @@ def get_title(gene, use_pep, pep):
         v = pep.loc[[gene], ["tair", "symbol", "top_spear_cor"]]
         v = v.values.tolist()[0]
         v[2] = round(v[2], 4)
+        # if v[1] == 'None':
+        #     v = [v[0], v[2]]
+        # v = ' - '.join(str(e) for e in v)
+
         if v[1] == 'None':
-            v = [v[0], v[2]]
-        v = ' - '.join(str(e) for e in v)
+            v = str(v[0]) + ' (PEP: ' + str(v[2]) + ")"
+        else:
+            v = str(v[0]) + ' - ' + str(v[1]) + ' (PEP: ' + str(v[2]) + ")"
     else:
         v = pep.loc[[gene], ["tair", "symbol"]]
         v = v.values.tolist()[0]
         v = ' - '.join(str(e) for e in v)
     return v
+
+
+def get_tair_symbol_list(sdge_genes, pep):
+    tair_symbol = []
+    for gene in sdge_genes:
+        t_s = pep.loc[[gene], ["tair", "symbol"]].values[0].tolist()
+        t = t_s[0]
+        t_s_str = str(t_s[0]) + " - " + str(t_s[1])
+        tair_symbol.append([t_s_str, t])
+    return tair_symbol
 
 
 PATH = pathlib.Path(__file__).parent
@@ -41,127 +56,6 @@ sdge_genes = sdge.columns.values.tolist()
 path = DATA_PATH.joinpath("pep.csv")
 pep = pd.read_csv(path, sep=",", index_col=0, decimal=".")
 
-# ref_expr_card = html.Div(
-#     [
-#         html.Div([
-#             html.P("this binary expression has been reconstructed from 2D stacked confocal images"),
-#             dcc.Dropdown(id='ref_expr_dropdown', multi=False,
-#                          options=[{'label': x, 'value': x} for x in ref_genes],
-#                          value="AT1G62360"),
-#             dcc.Graph(id='ref_expr_graph', figure={})
-#         ], className="colm", style={"max-width": "100%"})
-#     ], className="rowm"
-# )
-#
-# pre_expr_card = html.Div(
-#     [
-#         html.Div([
-#             html.P("this continuous expression has been reconstructed using novosparc"),
-#             dcc.Dropdown(id='pre_expr_dropdown', multi=False,
-#                          options=[{'label': x, 'value': x} for x in sdge_genes],
-#                          value="AT1G01010", style={"background-color": "black"}),
-#             dcc.Graph(id='pre_expr_graph', figure={})
-#         ], className="colm", style={"max-width": "100%"})
-#     ], className="rowm", style={"padding": "2rem"}
-# )
-#
-# pre_expr_menu_card = html.Div(
-#     [
-#         html.Div([
-#             html.H5("Range of Values:"),
-#             dcc.RangeSlider(id='slider_pre', min=0, max=0, value=[],
-#                             marks={}, step=None, allowCross=False,
-#                             className="slider_expr", verticalHeight=800),
-#             html.H5("Color Scheme:"),
-#             dcc.RadioItems(id='color_code',
-#                            options=[
-#                                {'label': 'blue-yellow-red', 'value': 'byr'},
-#                                {'label': 'yellow-red', 'value': 'yr'},
-#                                {'label': 'red-green', 'value': 'rg'}
-#                            ],
-#                            value='byr',
-#                            # labelStyle={'display': 'inline-block', "box-sizing":"border-box", "margin-bottom":"0"},
-#                            # inputStyle={"margin-left":"-1.25rem", "box-sizing":"border-box", "padding":"0",
-#                            # "position":"absolute", "margin-top":"0.3rem", "overflow":"visible"},
-#                            inputStyle={"margin-right": "5px"}
-#                            # style={"position":"relative", "display":"block", "padding-left":"1.25rem",
-#                            # "box-sizing":"border-box", "text-align":"left"}
-#                            )
-#         ], className="colm", style={"max-width": "100%"})
-#
-#     ], className="rowm", style={"padding": "2rem"}
-# )
-#
-# ref_expr_menu_card = html.Div(
-#     [
-#         html.Div([
-#             html.H5("Color Scheme:"),
-#             dcc.RadioItems(id='color_code_ref',
-#                            options=[
-#                                {'label': 'blue-yellow-red', 'value': 'byr'},
-#                                {'label': 'yellow-red', 'value': 'yr'},
-#                                {'label': 'red-green', 'value': 'rg'}
-#                            ],
-#                            value='byr',
-#                            inputStyle={"margin-right": "5px"}
-#                            )
-#         ], className="colm", style={"max-width": "100%"})
-#     ], className="rowm", style={"padding": "2rem"}
-# )
-
-# gg = dcc.Graph(figure=
-#                go.Figure(data=[go.Scatter3d(x=ref['x'], y=ref['y'], z=ref['z'], mode='markers',
-#                                             marker=dict(color=ref["AT1G62360"],
-#                                                         showscale=True, colorscale=["yellow", "red"],
-#                                                         colorbar=dict(thickness=30, tickcolor="white",
-#                                                                       tickfont=dict(color="white"))),
-#                                             showlegend=False
-#
-#                                             )],
-#                          layout=go.Layout(scene=dict(bgcolor="#060606",
-#                                                      xaxis=dict(showgrid=False, zeroline=False,
-#                                                                 visible=False),
-#                                                      yaxis=dict(showgrid=False, zeroline=False,
-#                                                                 visible=False),
-#                                                      zaxis=dict(showgrid=False, zeroline=False,
-#                                                                 visible=False)
-#                                                      ),
-#                                           margin=dict(l=0, r=0, t=0, b=0), paper_bgcolor="#060606"
-#                                           )
-#                          )
-#                )
-
-# page_1 = html.Div([
-#     html.Div(
-#         [
-#             html.Div([ref_expr_card], className="colm",
-#                      style={"border": "0.25rem solid #2a9fd6", "border-radius": "2.5%", "max-width": "50%"}),
-#             html.Div([pre_expr_card], className="colm space-left",
-#                      style={"border": "0.15rem solid #2a9fd6", "border-radius": "2.5%", "background-color": "#282828",
-#                             "max-width": "50%"}),
-#         ], className="rowm"
-#     ),
-#     html.Div(
-#         [
-#             html.Div([ref_expr_menu_card], className="colm",
-#                      style={"border": "0.25rem solid #2a9fd6", "border-radius": "2.5%", "max-width": "50%"}),
-#             html.Div([pre_expr_menu_card], className="colm space-left",
-#                      style={"border": "0.15rem solid #2a9fd6", "border-radius": "2.5%", "background-color": "#282828",
-#                             "max-width": "50%"}),
-#         ], className="rowm space-up"
-#     )
-# ], className="colm", style={"background-color": "#060606", "max-width": "100%"}
-#     # CHANGED THAT to 100% ! WORKS NOW With new style sheet
-# )
-
-# pre_expr_card = html.Div(
-#     [
-#         html.Div([
-#             # html.P("this continuous expression has been reconstructed using novosparc"),
-#             ref_expr_graph
-#         ], className="colm", style={"max-width": "100%", "width":"100%"})
-#     ], className="rowm", style={"padding": "2rem"}
-# )
 
 text_1 = "The 3D expression profiles of genes shown here are in binary format and were obtained by reconstructing 2D " \
          "confocal images and manually annotating the respective expression for all cells in the model. In total " \
@@ -193,9 +87,12 @@ ref_card = html.Div([
             # dropdown menu
             html.Div([
                 html.Div([
+                    # dcc.Dropdown(id='ref_expr_dropdown', multi=False,
+                    #              options=[{'label': x, 'value': x} for x in ref_genes],
+                    #              value="AT1G62360")
                     dcc.Dropdown(id='ref_expr_dropdown', multi=False,
-                                 options=[{'label': x, 'value': x} for x in ref_genes],
-                                 value="AT1G62360")
+                                 options=[{'label': x[0], 'value': x[1]} for x in get_tair_symbol_list(ref_genes, pep)],
+                                 value="AT1G24260")
                 ], className="colm")
             ], className="rowm"),
             # the plot
@@ -250,9 +147,13 @@ pre_card = html.Div([
             # dropdown menu
             html.Div([
                 html.Div([
+                    # dcc.Dropdown(id='pre_expr_dropdown', multi=False,
+                    #              options=[{'label': x, 'value': x} for x in sdge_genes],
+                    #              value="AT1G24260")
                     dcc.Dropdown(id='pre_expr_dropdown', multi=False,
-                                 options=[{'label': x, 'value': x} for x in sdge_genes],
+                                 options=[{'label': x[0], 'value': x[1]} for x in get_tair_symbol_list(sdge_genes, pep)],
                                  value="AT1G24260")
+
                 ], className="colm")
             ], className="rowm"),
             # the plot
@@ -316,7 +217,8 @@ page_1 = html.Div([
               [Input('ref_expr_dropdown', 'value'), Input('color_code_ref', 'value')])
 def update_ref_expr(val_chosen_2, color_code):
     # get title based on gene choosen
-    title = get_title(gene=val_chosen_2, use_pep=True, pep=pep)
+    print(val_chosen_2)
+    title = get_title(gene=val_chosen_2, use_pep=False, pep=pep)
 
     # obtain color code
     col_code = []
