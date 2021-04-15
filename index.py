@@ -37,7 +37,7 @@ navbar = html.Div([
         html.Div([""], className='colm'),
         # BUTTON
         html.Div([
-            html.A([html.Button(["3D Expression"], className="button button1")],
+            html.A([html.Button(["Visualize Gene Expression"], className="button button1")],
                    href="/apps/expr", style={"height": "100%", "width": "100%"})
         ], className='colm',
             style={"align-items": "center", "justify-content": "center", "background-color": "red"}),
@@ -45,7 +45,7 @@ navbar = html.Div([
         html.Div([""], className='colm'),
         # BUTTON
         html.Div([
-            html.A([html.Button(["3D Clusters"], className="button button2")],
+            html.A([html.Button(["Visualize Cell Cluster Location"], className="button button2")],
                    href="/apps/clust", style={"height": "100%", "width": "100%"})
         ], className='colm', style={"align-items": "center", "justify-content": "center"}),
         # SPACER

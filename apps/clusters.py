@@ -29,6 +29,9 @@ clust['x'] = ref['x'].tolist()
 clust['y'] = ref['y'].tolist()
 clust['z'] = ref['z'].tolist()
 
+path = DATA_PATH.joinpath("cluster_anno.csv")
+clust_anno = pd.read_csv(path, sep=",")
+
 clust_umap_card = html.Div([
     html.Div([
         # The main part of the card
@@ -93,20 +96,48 @@ clust_3d_card = html.Div([
 ], className="rowm"
 )
 
-clust_data = "The UMAP plot (lower left plot) describes the lower dimensional representation of cells from the scRNA-seq " \
-             "dataset which was fed into novosparc + (together with marker genes) to predict the unknown 3D expression " \
-             "profiles shown in '3D expression'. Additionally cells were clustered into 12 groups, visualized with " \
-             "different colors. By using a probablistic assignment of single-cells from the scRNA-seq data to cells " \
-             "in the 3D model, the clusters in the UMAP plot could be mapped onto the 3D model (lower right plot). " \
-             "The color of a cell in the 3D model describes the probability that this cell belongs to a particular " \
-             "cluster (the one chosen through the dropdown). "
-usage = "The 3D Cluster Mapping makes it possible to view the location of single-cell UMAP clusters in the 3D " \
-        "mersitem model. This enables the verification and possibly the dicovery of new cell types in a 3D context."
-menu = "In order to visualize the 3D cluster assignment as well as the postion of cells in the UMAP plot, choose" \
-       "a cluster in the Drop-Down meny below. The choosen cluster will be highlighted in the UMAP plot and a 3D " \
-       "Cluster mapping for this selected cluster will be shown on the right. The color scheme as well as Maximum " \
-       "and Minimum for the displayed probabilities can be changed via the Radiobuttons and Rangeslider to " \
-       "optimize visualizaiton."
+# clust_data = "The UMAP plot (lower left plot) describes the lower dimensional representation of cells from the scRNA-seq " \
+#              "dataset which was fed into novosparc + (together with marker genes) to predict the unknown 3D expression " \
+#              "profiles shown in '3D expression'. Additionally cells were clustered into 12 groups, visualized with " \
+#              "different colors. By using a probablistic assignment of single-cells from the scRNA-seq data to cells " \
+#              "in the 3D model, the clusters in the UMAP plot could be mapped onto the 3D model (lower right plot). " \
+#              "The color of a cell in the 3D model describes the probability that this cell belongs to a particular " \
+#              "cluster (the one chosen through the dropdown). "
+clust_data = 'The UMAP plot (lower left plot) describes the lower dimensional representation of nuclei from the snRNA-seq dataset generated from flower meristems. Each color represents one of the 12 cell clusters identified in the analysis. By using a probabilistic assignment of single cells from the snRNA-seq data to cells in the 3D model, the clusters in the UMAP plot could be mapped onto the 3D model (lower right plot). The color of a cell in the 3D model describes the probability that this cell belongs to a particular cluster (the one chosen through the dropdown menu).'
+# usage = "The 3D Cluster Mapping makes it possible to view the location of single-cell UMAP clusters in the 3D " \
+#         "mersitem model. This enables the verification and possibly the dicovery of new cell types in a 3D context."
+# menu = "In order to visualize the 3D cluster assignment as well as the postion of cells in the UMAP plot, choose" \
+#        "a cluster in the Drop-Down meny below. The choosen cluster will be highlighted in the UMAP plot and a 3D " \
+#        "Cluster mapping for this selected cluster will be shown on the right. The color scheme as well as Maximum " \
+#        "and Minimum for the displayed probabilities can be changed via the Radiobuttons and Rangeslider to " \
+#        "optimize visualizaiton."
+menu = 'In order to visualize the 3D cluster assignment as well as the position of cells in the UMAP plot, choose a cluster in the dropdown menu below. The chosen cluster will be highlighted in the UMAP plot and a 3D mapping result for this selected cluster will be shown on the right. The color scheme as well as the scale can be changed.'
+
+# def get_clust_titles(gene, use_pep, pep):
+#     if use_pep:
+#         v = pep.loc[[gene], ["tair", "symbol", "top_spear_cor"]]
+#         v = v.values.tolist()[0]
+#         v[2] = round(v[2], 4)
+#         # if v[1] == 'None':
+#         #     v = [v[0], v[2]]
+#         # v = ' - '.join(str(e) for e in v)
+#
+#         if v[1] == 'None':
+#             v = str(v[0]) + ' (PEP: ' + str(v[2]) + ")"
+#         else:
+#             v = str(v[0]) + ' - ' + str(v[1]) + ' (PEP: ' + str(v[2]) + ")"
+#     else:
+#         v = pep.loc[[gene], ["tair", "symbol"]]
+#         v = v.values.tolist()[0]
+#         v = ' - '.join(str(e) for e in v)
+#     return v
+
+def get_clust_anno_list(ca):
+    no_clusters = ca.shape[0]
+    cs_list = []
+    for i in range(no_clusters):
+        cs_list.append(ca.loc[[i],].values[0].tolist())
+    return cs_list
 
 page_2 = html.Div([
     html.Div([
@@ -115,8 +146,8 @@ page_2 = html.Div([
             html.Div([
                 html.P(["Generation of the Data:"], className="card-title-small"),
                 html.P([clust_data], className="card-text"),
-                html.P(["Purpose of this visualization:"], className="card-title-small"),
-                html.P([usage], className="card-text"),
+                # html.P(["Purpose of this visualization:"], className="card-title-small"),
+                # html.P([usage], className="card-text"),
                 html.P(["How to use this resource:"], className="card-title-small"),
                 html.P([menu], className="card-text"),
 
@@ -129,9 +160,12 @@ page_2 = html.Div([
         html.Div([
             html.Div([""], className="colm", style={"flex": "2 2 auto"}),  # SPACER
             html.Div([
+                # dcc.Dropdown(id='umap_dropdown', multi=False,
+                #              options=[{'label': x, 'value': x} for x in cluster_names],
+                #              value='cluster_1')
                 dcc.Dropdown(id='umap_dropdown', multi=False,
-                             options=[{'label': x, 'value': x} for x in cluster_names],
-                             value='cluster_1')
+                             options=[{'label': x[1], 'value': x[0]} for x in get_clust_anno_list(ca=clust_anno)],
+                             value="cluster_1")
             ], className="colm", style={"flex": "1 1 auto"}),  # actual dropdown
             html.Div([""], className="colm", style={"flex": "2 2 auto"}),  # SPACER
         ], className="rowm", style={"margin": "0.5rem 0 0.5rem 0"}),

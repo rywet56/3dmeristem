@@ -39,6 +39,8 @@ p8 = html.Div([
     ], className="text")
 ])
 
+p9 = "This website provides access to the predicted gene expression of a 3D reconstructed floral meristem obtained by combining single-nuclei RNA-seq data with a 3D image-based reconstructed flower meristem, as described in Neumann et al.[1].  It also provides visual access to the physical location of the identified snRNA-seq cell clusters in the 3D reconstructed meristem. Chose 'Visualize Gene Expression' or 'Visualize Cell Cluster Location' to view the predicted 3D expression and the 3D cluster assignment of cells, respectively."
+
 page_3 = html.Div([
     # SPACER
     html.Div([], className='colm', style={"flex": "1 1 0"
@@ -46,36 +48,39 @@ page_3 = html.Div([
                                           }
              ),
     html.Div([
-        html.H1(["Why this page?"], className="header_1"),
-        html.P([p1], className="text"),
+        html.H1(["3D gene expression atlas the A. Thaliana flower meristem"], className="header_1"),
+        html.P([p9], className="text"),
 
-        html.H1(["How to use this page ?"], className="header_1"),
-        p6,
-
-        html.H1(["The biological question"], className="header_1"),
-        html.P([p2], className="text"), html.P([p3], className="text"),
-
-        html.H1(["Our approach to answer this question"], className="header_1"),
-        html.P([p4], className="text"),
-
-        html.H1(["The computational framework – novosparc +"], className="header_1"),
-        html.P([p5], className="text"),
+        # html.H1(["Why this page?"], className="header_1"),
+        # html.P([p1], className="text"),
+        #
+        # html.H1(["How to use this page ?"], className="header_1"),
+        # p6,
+        #
+        # html.H1(["The biological question"], className="header_1"),
+        # html.P([p2], className="text"), html.P([p3], className="text"),
+        #
+        # html.H1(["Our approach to answer this question"], className="header_1"),
+        # html.P([p4], className="text"),
+        #
+        # html.H1(["The computational framework – novosparc +"], className="header_1"),
+        # html.P([p5], className="text"),
 
         html.H1(["Data Access"], className="header_1"),
         p8,
-        html.Div([
-            html.Div([""], className="colm"),
-            html.Div([
-                html.A(["GET 3D EXPRESSION"], className="custom-button",
-                       href="https://raw.githubusercontent.com/rywet56/3dmeristem/main/datasets/ALLGENES_ns_2_nt_5_alpha_0.1_epsilon_0.05_top_sccells_50_top_hvg_100_1000genes.txt")
-            ], className="colm"),
-            html.Div([""], className="colm"),
-            html.Div([
-                html.A(["GET 3D CLUSTERS"], className="custom-button",
-                       href="https://raw.githubusercontent.com/rywet56/3dmeristem/main/datasets/3d_clusters.csv")
-            ], className="colm"),
-            html.Div([""], className="colm"),
-        ], className="rowm", style={"height": "4rem", "margin": "1.5rem 0 2rem 0"}),
+        # html.Div([
+        #     html.Div([""], className="colm"),
+        #     html.Div([
+        #         html.A(["GET 3D EXPRESSION"], className="custom-button",
+        #                href="https://raw.githubusercontent.com/rywet56/3dmeristem/main/datasets/ALLGENES_ns_2_nt_5_alpha_0.1_epsilon_0.05_top_sccells_50_top_hvg_100_1000genes.txt")
+        #     ], className="colm"),
+        #     html.Div([""], className="colm"),
+        #     html.Div([
+        #         html.A(["GET 3D CLUSTERS"], className="custom-button",
+        #                href="https://raw.githubusercontent.com/rywet56/3dmeristem/main/datasets/3d_clusters.csv")
+        #     ], className="colm"),
+        #     html.Div([""], className="colm"),
+        # ], className="rowm", style={"height": "4rem", "margin": "1.5rem 0 2rem 0"}),
 
         html.H1(["References"], className="header_1"),
         html.P([
@@ -85,12 +90,12 @@ page_3 = html.Div([
             "provides an integrated view of molecular regulation and growth control. BioRxiv, 2020.09.25.313312. "
             "https://doi.org/10.1101/2020.09.25.313312",
         ], className="text"),
-        html.P(["[2] our publication"
+        html.P(["[2] < Neumann M., Xu X., ... >"
         ], className="text"),
-        html.P([
-            "[3] Nitzan, M., Karaiskos, N., Friedman, N., & Rajewsky, N. (2019). Gene expression cartography. Nature, "
-            "576(7785), 132–137. https://doi.org/10.1038/s41586-019-1773-3"
-        ], className="text"),
+        # html.P([
+        #     "[3] Nitzan, M., Karaiskos, N., Friedman, N., & Rajewsky, N. (2019). Gene expression cartography. Nature, "
+        #     "576(7785), 132–137. https://doi.org/10.1038/s41586-019-1773-3"
+        # ], className="text"),
 
     ], className='colm main_text_card', style={"flex": "4 4 0"
                                                # , "background-color": "blue"
