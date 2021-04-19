@@ -12,8 +12,7 @@ that is deployed via Heroku on https://threed-flower-meristem.herokuapp.com, sum
 
 ## 2) Web App
 The web-app allows to view the predicted (via NovoSpaRc [1]) gene expression profiles of a selected (via PEP-score) set of ~ 1,000 genes in a 3D model of the developing A. Thaliana flower meristem at stage 4. See picture below. 
-Next to that, also the UMAP clustering (from scRNA-seq data at stage 4) can be viewed in the 3D  
-model, which has been pbtained by a probabilistic mapping of single cells to cells in 3D model via NovoSpaRc [1].   
+Next to that, also the UMAP clustering (from scRNA-seq data at stage 4) can be viewed in the 3D model, which has been obtained by a probabilistic mapping of single cells to cells in 3D model via NovoSpaRc [1].   
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/43107602/115282708-cd5ce080-a14a-11eb-94c4-e2c2f03e11fc.png"        height="391.75" width="375">
