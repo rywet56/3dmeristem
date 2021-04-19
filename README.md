@@ -30,5 +30,9 @@ matrix of shape cells x genes, containing predicted 3D gene expression profiles 
 Probabilistic assignment of clusters 0-12 to all cells in the 3D flower meristem model.
 
 # References
-[1] 
+[1] Neumann Manuel, Xu Xiaocai., ... 
+[2] Refahi, Y., Zardilis, A., Michelin, G., Wightman, R., Leggio, B., Legrand, J., Faure, E., Vachez, L., Armezzani, A., Risson, A.-E., Zhao, F., Das, P., Prunet, N., Meyerowitz, E., Godin, C., Malandain, G., Jönsson, H., & Traas, J. (2020). A multiscale analysis of early flower development in Arabidopsis provides an integrated view of molecular regulation and growth control. BioRxiv, 2020.09.25.313312.
+[3] novosparc
+
+
 
