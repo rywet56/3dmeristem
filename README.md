@@ -7,6 +7,10 @@ The web-app allows to view the predicted (via NovoSpaRc [1]) gene expression pro
 Next to that, also the UMAP clustering (from scRNA-seq data at stage 4) can be viewed in the 3D  
 model, which has been pbtained by a probabilistic mapping of single cells to cells in 3D model via NovoSpaRc [1].   
 
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/43107602/67617122-28c14300-f7e0-11e9-9bf0-c58b5b535cbd.png"        height="426.31" width="757.89">
+ </p>
+
 # Available Files
 ### umap_clusters.csv
 The UMAP coordinates of scRNA-seq cells and their cluster assignment.
