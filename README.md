@@ -16,7 +16,7 @@ Next to that, also the UMAP clustering (from scRNA-seq data at stage 4) can be v
 model, which has been pbtained by a probabilistic mapping of single cells to cells in 3D model via NovoSpaRc [1].   
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/43107602/115282091-0fd1ed80-a14a-11eb-9ff7-2d2ba1fcb36a.jpg"        height="1400" width="1462">
+  <img src="https://user-images.githubusercontent.com/43107602/115282708-cd5ce080-a14a-11eb-94c4-e2c2f03e11fc.png"        height="391.75" width="375">
  </p>
 
 ## Available Files
