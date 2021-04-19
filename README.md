@@ -21,25 +21,25 @@ model, which has been pbtained by a probabilistic mapping of single cells to cel
 
 ## Available Files
 ### umap_clusters.csv
-The UMAP coordinates of scRNA-seq cells and their cluster assignment.
+    The UMAP coordinates of scRNA-seq cells and their cluster assignment.
 
 ### pep.csv
-Predicted Expression Performance (PEP) score for all genes in ‘dge_top_1000_genes.csv’ with TAIR ID and gene symbol.
+    Predicted Expression Performance (PEP) score for all genes in ‘dge_top_1000_genes.csv’ with TAIR ID and gene symbol.
 
 ### dge_top_1000_genes.csv
-matrix of shape cells x genes, containing predicted 3D gene expression profiles over all cells in 3D flower meristem model. Only genes with a PEP > 0.13 are included.
+    matrix of shape cells x genes, containing predicted 3D gene expression profiles over all cells in 3D flower meristem model. Only genes with a PEP > 0.13 are included.
 
 ### confocal_states0-FilterWUSCLVtop100.csv
-matrix of shape cells x genes, containing binary expression profiles of 28 marker genes over all cells in 3D flower meristem model [ref]. Binary expression was obtained via manual annotation [ref]. matrix also contains 3D coordinates of cells, cell volume and cell ID.
+    matrix of shape cells x genes, containing binary expression profiles of 28 marker genes over all cells in 3D flower meristem model [ref]. Binary expression was obtained via manual annotation [ref]. matrix also contains 3D coordinates of cells, cell volume and cell ID.
 
 ### cluster_anno.csv
-cell/tissue – type annotation of scRNA-seq cell clusters in UMAP space.
+    cell/tissue – type annotation of scRNA-seq cell clusters in UMAP space.
 
 ### ALLGENES_ns_2_nt_5_alpha_0.1_epsilon_0.05_top_sccells_50_top_hvg_100_1000genes.txt
-matrix of shape cells x genes, containing predicted 3D gene expression profiles over all cells in 3D flower meristem model. Same as ‘dge_top_1000_genes.csv’, except that no predicted genes were selected based on PEP score.
+    matrix of shape cells x genes, containing predicted 3D gene expression profiles over all cells in 3D flower meristem model. Same as ‘dge_top_1000_genes.csv’, except that no predicted genes were selected based on PEP score.
 
 ### 3d_clusters.csv
-Probabilistic assignment of clusters 0-12 to all cells in the 3D flower meristem model.
+    Probabilistic assignment of clusters 0-12 to all cells in the 3D flower meristem model.
 
 # References
 [1] Neumann Manuel, Xu Xiaocai., ...   
