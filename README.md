@@ -11,7 +11,7 @@ This repository stores files for a web-app (built with Dash, Plotly and CSS in P
 that is deployed via Heroku on https://threed-flower-meristem.herokuapp.com, summarizing the main results of our recent paper "A 3D gene expression atlas of a floral meristem based on spatial mapping of single nucleus RNA sequencing data" in < Journal > [1]. Additionally, all relevant files to recreate those results are made available and described in the section 'Available Files', below.
 
 ## 2) Web App
-The web-app allows to view the predicted (via NovoSpaRc [1]) gene expression profiles of a selected (via PEP-score) set of ~ 1,000 genes in a 3D model of the developing A. Thaliana flower meristem at stage 4. See picture below. 
+The web-app allows to view the predicted (via NovoSpaRc [2]) gene expression profiles of a selected (via PEP-score) set of ~ 1,000 genes in a 3D model of the developing A. Thaliana flower meristem at stage 4 [1]. See picture below.   
 Next to that, also the UMAP clustering (from scRNA-seq data at stage 4) can be viewed in the 3D model, which has been obtained by a probabilistic mapping of single cells to cells in 3D model via NovoSpaRc [1].   
 
 <p align="center">
@@ -42,8 +42,8 @@ Next to that, also the UMAP clustering (from scRNA-seq data at stage 4) can be v
 
 # 4) References
 [1] Neumann Manuel, Xu Xiaocai., ...   
-[2] Refahi, Y., Zardilis, A., Michelin, G., Wightman, R., Leggio, B., Legrand, J., Faure, E., Vachez, L., Armezzani, A., Risson, A.-E., Zhao, F., Das, P., Prunet, N., Meyerowitz, E., Godin, C., Malandain, G., Jönsson, H., & Traas, J. (2020). A multiscale analysis of early flower development in Arabidopsis provides an integrated view of molecular regulation and growth control. BioRxiv, 2020.09.25.313312.   
-[3] novosparc
+[2] novosparc   
+[3] Refahi, Y., Zardilis, A., Michelin, G., Wightman, R., Leggio, B., Legrand, J., Faure, E., Vachez, L., Armezzani, A., Risson, A.-E., Zhao, F., Das, P., Prunet, N., Meyerowitz, E., Godin, C., Malandain, G., Jönsson, H., & Traas, J. (2020). A multiscale analysis of early flower development in Arabidopsis provides an integrated view of molecular regulation and growth control. BioRxiv, 2020.09.25.313312.   
 
 
 
