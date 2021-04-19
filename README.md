@@ -1,6 +1,6 @@
 # 3D Flower Meristem at stage 4
 This repository stores files for a web-app (built with Dash, Plotly and CSS in Python)  
-that is deployed via Heroku on https://threed-flower-meristem.herokuapp.com, which summarizes the main results of our recent paper "A 3D gene expression atlas of a floral meristem based on spatial mapping of single nucleus RNA sequencing data" in < Journal > [1]. Additionally, all relevant files to recreate those results are made available and described in 'Available Files', below.
+that is deployed via Heroku on https://threed-flower-meristem.herokuapp.com, summarizing the main results of our recent paper "A 3D gene expression atlas of a floral meristem based on spatial mapping of single nucleus RNA sequencing data" in < Journal > [1]. Additionally, all relevant files to recreate those results are made available and described in the section 'Available Files', below.
 
 # Web App
 The web-app allows to view the predicted (via NovoSpaRc [1]) gene expression profiles of a selected (via PEP-score) set of ~ 1,000 genes in a 3D model of the developing A. Thaliana flower meristem at stage 4.  
