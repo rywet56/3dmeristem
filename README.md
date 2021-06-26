@@ -41,9 +41,9 @@ Next to that, also the UMAP clustering (from scRNA-seq data at stage 4) can be v
     Probabilistic assignment of clusters 0-12 to all cells in the 3D flower meristem model.
 
 # 4) References
-[1] Neumann Manuel, Xu Xiaocai., ...   
-[2] novosparc   
-[3] Refahi, Y., Zardilis, A., Michelin, G., Wightman, R., Leggio, B., Legrand, J., Faure, E., Vachez, L., Armezzani, A., Risson, A.-E., Zhao, F., Das, P., Prunet, N., Meyerowitz, E., Godin, C., Malandain, G., Jönsson, H., & Traas, J. (2020). A multiscale analysis of early flower development in Arabidopsis provides an integrated view of molecular regulation and growth control. BioRxiv, 2020.09.25.313312.   
+[1] Neumann Manuel, Xu Xiaocai.,   
+[2] Nitzan, M., Karaiskos, N., Friedman, N., & Rajewsky, N. (2019). Gene expression cartography. Nature, 576(7785), 132–137. https://doi.org/10.1038/s41586-019-1773-3  
+[3] Refahi, Y., Zardilis, A., Michelin, G., Wightman, R., Leggio, B., Legrand, J., Faure, E., Vachez, L., Armezzani, A., Risson, A.-E., Zhao, F., Das, P., Prunet, N., Meyerowitz, E. M., Godin, C., Malandain, G., Jönsson, H., & Traas, J. (2021). A multiscale analysis of early flower development in <em>Arabidopsis</em> provides an integrated view of molecular regulation and growth control. Developmental Cell, 56(4), 540-556.e8. https://doi.org/10.1016/j.devcel.2021.01.019 
 
 
 
