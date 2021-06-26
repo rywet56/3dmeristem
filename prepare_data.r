@@ -51,9 +51,17 @@ dge_top_scaled <- scale(dge_top_1000_genes)
 path <- "/Users/manuel/OneDrive/git_hub_repos/3dmeristem/datasets/dge_top_1000_genes.csv"
 write.csv(x = dge_top_scaled, file = path)
 
+# -------------
+path = '/Volumes/work_storg/novosparc_paper_data/spatial_mapping/semi_true_prediction/semi_true_prediction_scaled.csv'
+dge1 <- read.csv(path, row.names = 1)
+dim(dge1)
 
+path <- "/Users/manuel/OneDrive/git_hub_repos/3dmeristem/datasets/dge_top_1000_genes.csv"
+dge2 <- read.csv(path, row.names = 1)
+dim(dge2)
 
-
+dge1[1:3, 'AT1G62360']
+dge2[1:3, 'AT1G62360']
 
 
 
