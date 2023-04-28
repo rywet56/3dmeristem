@@ -59,7 +59,7 @@ footer = html.Div([
         html.Div([
             html.Div(["Created by Manuel Neumann using Dash Plotly and CSS Flexbox"]),
             html.P([""]),
-            html.A([html.Div(["GitHub"])], href="https://github.com/rywet56", className="LINK")
+            html.A([html.Div(["GitHub Kaufmann Group"])], href="https://github.com/Kaufmann-Lab", className="LINK")
         ], className='colm', style={"flex": "1 1 0", "padding": "2rem",
                                     "justify-content": "space-around", "height": "3rem"})
     ], className="rowm")
