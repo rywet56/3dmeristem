@@ -39,7 +39,7 @@ p8 = html.Div([
 ])
 
 
-p9 = "This website provides access to the predicted gene expression of a 3D reconstructed floral meristem obtained by combining single-nuclei RNA-seq data with a 3D image-based reconstructed flower meristem, as described in Neumann et al.[1].  It also provides visual access to the physical location of the identified snRNA-seq cell clusters in the 3D reconstructed meristem. Chose 'Visualize Gene Expression' or 'Visualize Cell Cluster Location' to view the predicted 3D expression and the 3D cluster assignment of cells, respectively."
+p9 = "This website provides access to the predicted gene expression of a 3D reconstructed floral meristem obtained by combining single-nuclei RNA-seq data with a 3D image-based reconstructed flower meristem [1], as described in Neumann et al.[2].  It also provides visual access to the physical location of the identified snRNA-seq cell clusters in the 3D reconstructed meristem. Chose 'Visualize Gene Expression' or 'Visualize Cell Cluster Location' to view the predicted 3D expression and the 3D cluster assignment of cells, respectively."
 
 
 p10 = html.Div([
